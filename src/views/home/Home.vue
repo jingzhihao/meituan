@@ -1,26 +1,36 @@
 <template>
-  <div></div>
+  <div>
+    <!--头部-->
+    <top></top>
+    <!--搜索-->
+    <search></search>
+  </div>
 </template>
 
 <script>
+import top from "../../components/home/Top";
+import search from "../../components/home/Search"
 export default {
   data() {
     return {};
   },
-  components: {},
+  components: {
+    top,
+    search
+  },
   methods: {
     getLocation() {
       let onj = {
-        keyword:'储缘蛋糕',
-        name:'成都'
-      }
-      this.$api.shopParticulars(onj).then(res => {
+        input: "火锅",
+        name: "成都"
+      };
+      this.$api.Recommendation(onj).then(res => {
         console.log(res);
-      })
+      });
     }
   },
   mounted() {
-    this.getLocation()
+    //this.getLocation()
   },
   watch: {},
   computed: {}

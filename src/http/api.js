@@ -47,7 +47,7 @@ export default {
     },
     //搜索建议
     Recommendation({ name, input }) {
-        return service.req(`/searchTop?city=${name}input=${input}`)
+        return service.req(`/searchTop?city=${name}&input=${input}`)
 
     },
     //根据关键词搜索
@@ -64,7 +64,7 @@ export default {
             username,
             password
         })
-    }
+    },
     //注册
     postRegister({ username, password, email }) {
         return service.req(`/users/register`, {
