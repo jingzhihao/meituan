@@ -3,7 +3,7 @@
     <!--头部-->
     <top></top>
     <!--搜索-->
-    <search></search>
+    <!-- <search></search> -->
   </div>
 </template>
 
