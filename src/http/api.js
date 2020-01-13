@@ -46,6 +46,10 @@ export default {
         return service.req(`/hotPlace?city=${name}`)
     },
     //搜索建议
+    /**
+     * 
+     * 
+     */
     Recommendation({ name, input }) {
         return service.req(`/searchTop?city=${name}&input=${input}`)
 
