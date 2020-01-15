@@ -60,29 +60,48 @@
       </div>
       <div class="mymt" @mouseenter="addClass(4)" @mouseleave="delClass">
         <span class="fwt_name">美团网址</span>
-        <div class="hotel" v-show="num === 4">
-          <div class="name">
+        <div class="hotel">
+          <div style="width:270px">
             <span>酒店旅游</span>
             <div class="font_hontel">
               <div v-for="(item,index) in hotel" :key="index">{{item}}</div>
             </div>
           </div>
-          <div class="name">
+          <div style="width:180px">
             <span>吃美食</span>
             <div class="font_cate">
               <div v-for="(item,index) in cate" :key="index">{{item}}</div>
             </div>
           </div>
-          <div class="name">
+          <div style="width:100px">
             <span>看电影</span>
             <div class="font_movie">
               <div v-for="(item,index) in movie" :key="index">{{item}}</div>
             </div>
           </div>
-          <div class="name">
+          <div>
             <span>手机App</span>
-            <div class>
-              <div v-for="(item,index) in app" :key="index">{{item}}</div>
+            <div class="ig">
+              <img
+                src="https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png"
+                alt
+              />
+              <img
+                src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png"
+                alt
+              />
+              <img
+                src="https://p0.meituan.net/travelcube/162c3308d9622f6d9cfaa49e60be4dca8573.png"
+                alt
+              />
+              <img
+                src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png"
+                alt
+              />
+              <img
+                src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png"
+                alt
+              />
             </div>
           </div>
         </div>
@@ -122,9 +141,6 @@ export default {
         "北美票房榜",
         "电影排行榜"
       ],
-      app: ["美团app", "外卖app", "民宿app", "点评app", "猫眼app"],
-
-      
     };
   },
   components: {},
@@ -187,7 +203,6 @@ export default {
 }
 .fwt {
   display: flex;
-  //justify-content: space-between;
   text-align: center;
   cursor: pointer;
   span {
@@ -208,7 +223,8 @@ export default {
       padding: 8px 15px;
     }
   }
-  .hotel {
+}
+.hotel {
     position: absolute;
     left: 30px;
     top: 35px;
@@ -217,33 +233,13 @@ export default {
     display: flex;
     //justify-content: space-around;
     background: rgb(248, 248, 248);
-  }
-  .name {
-    float: left;
-    //margin:
-    margin-top: 50px;
-    margin-right: 80px;
-    > span {
-      font-size: 12px;
-      font-weight: 500;
+    img{
+      height: 60px;
+    }
+    span{
+      font-size: 16px;
+      font-weight: 700;
       color: black;
     }
   }
-  .font_hontel {
-    width: 195px;
-    div {
-      text-align: center;
-      float: left;
-      width: 65px;
-      line-height: 30px;
-    }
-  }
-  .font_movie {
-    div {
-      margin: 10px 0 ;
-      height: 20px;
-      //border: 1px solid red;
-    }
-  }
-}
 </style>
