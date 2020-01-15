@@ -6,22 +6,27 @@
         {{arr.city}}
       </div>
       <div>
-        <a class="a">切换地址</a>
+        <span class="address">切换地址</span>
       </div>
       <div>
-        <a>[ 新津县 崇州 彭州 ]</a>
+        <span>
+          [
+          <a class="city_guss">新津县</a>
+          <a class="city_guss">崇州</a>
+          <a class="city_guss">彭州</a> ]
+        </span>
       </div>
       <div>
-        <a>立即登录</a>
+        <span class="login">立即登录</span>
       </div>
       <div>
-        <a>注册</a>
+        <span>注册</span>
       </div>
     </div>
-    <div class="bont"></div>
+
     <div class="fwt">
-      <div class="mymt" :class="{bg : num===1}" @mouseenter="addClass(1)" @mouseleave="delClass">
-        <span>我的美团</span>
+      <div class="mymt" @mouseenter="addClass(1)" @mouseleave="delClass">
+        <span class="fwt_name">我的美团</span>
         <div class="hidden" v-show="num===1">
           <div>我的订单</div>
           <div>我的收藏</div>
@@ -30,10 +35,10 @@
         </div>
       </div>
       <div>
-        <span>我的美团</span>
+        <span>手机App</span>
       </div>
-      <div class="mymt" :class="{bg : num===2}" @mouseenter="addClass(2)" @mouseleave="delClass">
-        <span>商家中心</span>
+      <div class="mymt" @mouseenter="addClass(2)" @mouseleave="delClass">
+        <span class="fwt_name">商家中心</span>
         <div class="hidden" v-show="num===2">
           <div>美团餐饮商户中心</div>
           <div>登录商家中心</div>
@@ -45,47 +50,39 @@
           <div>免费合作美团排队</div>
         </div>
       </div>
-      <div class="mymt" :class="{bg : num===3}" @mouseenter="addClass(3)" @mouseleave="delClass">
-        <span>美团规则</span>
+      <div class="mymt" @mouseenter="addClass(3)" @mouseleave="delClass">
+        <span class="fwt_name">美团规则</span>
         <div class="hidden" v-show="num===3">
           <div>规则中心</div>
           <div>规则目录</div>
           <div>规则评议院</div>
         </div>
       </div>
-      <div class="mymt" :class="{bg : num===4}" @mouseenter="addClass(4)" @mouseleave="delClass">
-        <span>美团网址</span>
-        <div class="hotel" v-show="num===4">
+      <div class="mymt" @mouseenter="addClass(4)" @mouseleave="delClass">
+        <span class="fwt_name">美团网址</span>
+        <div class="hotel" v-show="num === 4">
           <div class="name">
             <span>酒店旅游</span>
             <div class="font_hontel">
-              <div v-for="(item,index) in hotel" :key="index">
-                <span>{{item}}</span>
-              </div>
+              <div v-for="(item,index) in hotel" :key="index">{{item}}</div>
             </div>
           </div>
           <div class="name">
             <span>吃美食</span>
             <div class="font_cate">
-              <div v-for="(item,index) in cate" :key="index">
-                <span>{{item}}</span>
-              </div>
+              <div v-for="(item,index) in cate" :key="index">{{item}}</div>
             </div>
           </div>
           <div class="name">
             <span>看电影</span>
             <div class="font_movie">
-              <div v-for="(item,index) in movie" :key="index">
-                <span>{{item}}</span>
-              </div>
+              <div v-for="(item,index) in movie" :key="index">{{item}}</div>
             </div>
           </div>
           <div class="name">
             <span>手机App</span>
-            <div class="font_hontel">
-              <div v-for="(item,index) in app" :key="index">
-                <span>{{item}}</span>
-              </div>
+            <div class>
+              <div v-for="(item,index) in app" :key="index">{{item}}</div>
             </div>
           </div>
         </div>
@@ -125,7 +122,9 @@ export default {
         "北美票房榜",
         "电影排行榜"
       ],
-      app: ["美团app", "外卖app", "民宿app", "点评app", "猫眼app"]
+      app: ["美团app", "外卖app", "民宿app", "点评app", "猫眼app"],
+
+      
     };
   },
   components: {},
@@ -156,74 +155,95 @@ export default {
 
 <style scoped lang='scss'>
 .cont {
-  height: 35px;
+  width: 1115px;
+  margin: 0 auto;
+  height: 40px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-size: 10px;
-  color: rgb(153, 153, 153);
-  a {
-    color: rgb(68, 68, 68);
+  color: rgb(102, 102, 102);
+  a:hover {
+    color: rgb(253, 140, 0);
+  }
+  span:hover {
+    color: rgb(253, 140, 0);
   }
 }
 .font {
-  width: 23%;
   display: flex;
-  justify-content: space-around;
-  //border: 1px solid red;
+  cursor: pointer;
+  .login {
+    color: rgb(253, 140, 0);
+    margin: 0 20px;
+  }
+  .city_guss {
+    color: rgb(178, 165, 193);
+    margin: 0 5px;
+  }
+  .address {
+    margin: 0 5px;
+  }
 }
 .fwt {
-  //border: 1px solid red;
-  width: 30%;
   display: flex;
-  justify-content: space-around;
-}
-.bont {
-  width: 13%;
-}
-
-.hidden {
-  //border: 1px solid red;
-  background: rgb(248, 248, 248);
-  position: absolute;
-  div {
-    text-align: center;
-    line-height: 30px;
-  }
-}
-.hotel {
-  position: absolute;
-  left:  0;
-  //top: 100px;
-  border: 1px solid red;
-  width: 1000px;
-  display: flex;
-  justify-content: space-around;
-  background: rgb(248, 248, 248);
-}
-.name {
-  margin: 40px 0;
+  //justify-content: space-between;
+  text-align: center;
+  cursor: pointer;
   span {
-    font-size: 12px;
-    font-weight: 500;
-    color: black;
+    padding: 12px 15px;
   }
-}
-.font_hontel {
-  width: 200px;
-  //border: 1px solid red;
-  margin: 20px -50px;
-  div {
+  .fwt_name:hover {
+    box-shadow: 0px 0px 5px rgb(178, 165, 193);
+  }
+  .hidden {
+    background: rgb(248, 248, 248);
+    position: absolute;
+    text-align: center;
+    box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-sizing: border-box;
+    > div {
+      padding: 8px 15px;
+    }
+  }
+  .hotel {
+    position: absolute;
+    left: 30px;
+    top: 35px;
+    box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
+    width: 1148px;
+    display: flex;
+    //justify-content: space-around;
+    background: rgb(248, 248, 248);
+  }
+  .name {
     float: left;
-    width: 65px;
-    height: 30px;
-    border: 1px solid red;
+    //margin:
+    margin-top: 50px;
+    margin-right: 80px;
+    > span {
+      font-size: 12px;
+      font-weight: 500;
+      color: black;
+    }
   }
-}
-.font_movie{
-  div {
-   height: 30px;
-   border: 1px solid red;
+  .font_hontel {
+    width: 195px;
+    div {
+      text-align: center;
+      float: left;
+      width: 65px;
+      line-height: 30px;
+    }
+  }
+  .font_movie {
+    div {
+      margin: 10px 0 ;
+      height: 20px;
+      //border: 1px solid red;
+    }
   }
 }
 </style>
