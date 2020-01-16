@@ -283,6 +283,7 @@ export default {
   }
 }
 .hotel {
+  z-index: 3;
   position: absolute;
   left: 30px;
   top: 35px;
@@ -302,16 +303,21 @@ export default {
 }
 
 .header {
-  width: 70%;
-  margin: 0 22px;
+  
+  margin: 20px auto;
   //border: 1px solid red;
   height: 100px;
   display: flex;
-  justify-content: space-around;
+  //justify-content: space-around;
   align-items: center;
+  box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
+  .header-title{
+    padding: 0 100px;
+  }
 }
 .warning {
   display: flex;
+  margin: 0 100px
 }
 .img {
   width: 120px;
@@ -319,6 +325,7 @@ export default {
 }
 
 .input {
+  z-index: 2;
   position: absolute;
   background: white;
   //height: 60px;

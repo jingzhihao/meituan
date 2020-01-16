@@ -48,7 +48,9 @@ export default {
       cityList: [],
       disabled: true,
       value2: "",
-      hotCity: []
+      hotCity: [],
+      city:[],
+      arr:[]
     };
   },
   components: {
@@ -60,7 +62,7 @@ export default {
       this.$api.Province().then(res => {
         console.log(res);
         this.cityList = res.data.province;
-        console.log(this.cityList);
+        //console.log(this.cityList);
       });
     },
 
@@ -73,20 +75,33 @@ export default {
       });
     },
     //跳转到选中的城市的
-    addCity(va){
-        console.log(va);
+    addCity(va) {
+      console.log(va);
     },
     //热门城市
     getHotCity() {
       this.$api.getHotCity().then(res => {
-        console.log(res);
+        //console.log(res);
         this.hotCity = res.data.hots;
       });
-    }
+    },
+    //
+     getCities() {
+      //全部
+      
+      this.city = this.$city.data.cities;
+      //热
+
+      Object.keys(this.city).map(item => {
+        this.arr.push(...this.city[item]);
+      });
+      console.log(this.arr);
+    },
   },
   mounted() {
     this.getProvince();
     this.getHotCity();
+    this.getCities();
   },
   watch: {},
   computed: {}
@@ -97,10 +112,13 @@ export default {
 .font {
   width: 1115px;
   margin: 20px 80px;
+  box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
   > div {
     font-size: 16px;
     color: #333;
     font-weight: 500;
+    width: 96%;
+    margin: 0 auto;
   }
 }
 .city-tilte {
@@ -112,16 +130,17 @@ export default {
   }
 }
 .hotCity {
-  margin: 20px 0;
+  padding: 30px 0;
   align-items: center;
-  .hot{
+  border-bottom: 1px solid rgb(229, 229, 229);
+  .hot {
     font-size: 16px;
     color: #333;
     font-weight: 500;
   }
   > span {
     font-size: 12px;
-    color: rgb(102,102,102);
+    color: rgb(102, 102, 102);
     padding: 10px 10px;
   }
 }
