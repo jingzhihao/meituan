@@ -6,7 +6,7 @@ export default {
         return service.req(`/position`)
     },
     //获取省份
-    getProvince() {
+    Province() {
         return service.req(`/province`)
     },
     //获取城市

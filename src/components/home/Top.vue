@@ -1,109 +1,142 @@
 <template>
-  <div class="cont">
-    <div class="font">
-      <div>
-        <Icon type="md-pin" />
-        {{arr.city}}
+  <div>
+    <div class="cont">
+      <!--头部导航-->
+      <div class="font">
+        <div>
+          <Icon type="md-pin" />
+          {{arr.city}}
+        </div>
+        <div>
+          <span class="address" @click="$go('/city')">切换地址</span>
+        </div>
+        <div>
+          <span>
+            [
+            <a class="city_guss">新津县</a>
+            <a class="city_guss">崇州</a>
+            <a class="city_guss">彭州</a> ]
+          </span>
+        </div>
+        <div>
+          <span class="login" @click="$go('/login')">立即登录</span>
+        </div>
+        <div>
+          <span @click="$go('/register')">注册</span>
+        </div>
       </div>
-      <div>
-        <span class="address">切换地址</span>
-      </div>
-      <div>
-        <span>
-          [
-          <a class="city_guss">新津县</a>
-          <a class="city_guss">崇州</a>
-          <a class="city_guss">彭州</a> ]
-        </span>
-      </div>
-      <div>
-        <span class="login">立即登录</span>
-      </div>
-      <div>
-        <span>注册</span>
+
+      <div class="fwt">
+        <div class="mymt" @mouseenter="addClass(1)" @mouseleave="delClass">
+          <span class="fwt_name">我的美团</span>
+          <div class="hidden" v-show="num===1">
+            <div>我的订单</div>
+            <div>我的收藏</div>
+            <div>抵用券</div>
+            <div>账户设置</div>
+          </div>
+        </div>
+        <div>
+          <span>手机App</span>
+        </div>
+        <div class="mymt" @mouseenter="addClass(2)" @mouseleave="delClass">
+          <span class="fwt_name">商家中心</span>
+          <div class="hidden" v-show="num===2">
+            <div>美团餐饮商户中心</div>
+            <div>登录商家中心</div>
+            <div>美团智能收银</div>
+            <div>我想合作</div>
+            <div>手机免费开店</div>
+            <div>餐饮代理商招募</div>
+            <div>商家申请开票</div>
+            <div>免费合作美团排队</div>
+          </div>
+        </div>
+        <div class="mymt" @mouseenter="addClass(3)" @mouseleave="delClass">
+          <span class="fwt_name">美团规则</span>
+          <div class="hidden" v-show="num===3">
+            <div>规则中心</div>
+            <div>规则目录</div>
+            <div>规则评议院</div>
+          </div>
+        </div>
+        <div class="mymt" @mouseenter="addClass(4)" @mouseleave="delClass">
+          <span class="fwt_name">美团网址</span>
+          <div class="hotel" v-show="num===4">
+            <div style="width:270px">
+              <span>酒店旅游</span>
+              <div class="font_hontel">
+                <div v-for="(item,index) in hotel" :key="index">{{item}}</div>
+              </div>
+            </div>
+            <div style="width:180px">
+              <span>吃美食</span>
+              <div class="font_cate">
+                <div v-for="(item,index) in cate" :key="index">{{item}}</div>
+              </div>
+            </div>
+            <div style="width:100px">
+              <span>看电影</span>
+              <div class="font_movie">
+                <div v-for="(item,index) in movie" :key="index">{{item}}</div>
+              </div>
+            </div>
+            <div>
+              <span>手机App</span>
+              <div class="ig">
+                <img
+                  src="https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png"
+                  alt
+                />
+                <img
+                  src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png"
+                  alt
+                />
+                <img
+                  src="https://p0.meituan.net/travelcube/162c3308d9622f6d9cfaa49e60be4dca8573.png"
+                  alt
+                />
+                <img
+                  src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png"
+                  alt
+                />
+                <img
+                  src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png"
+                  alt
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="fwt">
-      <div class="mymt" @mouseenter="addClass(1)" @mouseleave="delClass">
-        <span class="fwt_name">我的美团</span>
-        <div class="hidden" v-show="num===1">
-          <div>我的订单</div>
-          <div>我的收藏</div>
-          <div>抵用券</div>
-          <div>账户设置</div>
+    <!--搜索-->
+    <div class="header">
+      <div class="header-title">
+        <a>
+          <img class="img" src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团" />
+        </a>
+      </div>
+      <div class="warning">
+        <div>
+          <Input
+            v-model="value1"
+            @on-focus="autofocus"
+            @on-blur="lose"
+            placeholder="搜索商家或地点"
+            style="width:400px"
+          />
+          <div class="input" v-show="flag">
+            <span class="input-hot">热门搜索</span>
+            <div class="list" v-for="item in list" :key="item.id">
+              <span>{{item.name}}</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <span>手机App</span>
-      </div>
-      <div class="mymt" @mouseenter="addClass(2)" @mouseleave="delClass">
-        <span class="fwt_name">商家中心</span>
-        <div class="hidden" v-show="num===2">
-          <div>美团餐饮商户中心</div>
-          <div>登录商家中心</div>
-          <div>美团智能收银</div>
-          <div>我想合作</div>
-          <div>手机免费开店</div>
-          <div>餐饮代理商招募</div>
-          <div>商家申请开票</div>
-          <div>免费合作美团排队</div>
-        </div>
-      </div>
-      <div class="mymt" @mouseenter="addClass(3)" @mouseleave="delClass">
-        <span class="fwt_name">美团规则</span>
-        <div class="hidden" v-show="num===3">
-          <div>规则中心</div>
-          <div>规则目录</div>
-          <div>规则评议院</div>
-        </div>
-      </div>
-      <div class="mymt" @mouseenter="addClass(4)" @mouseleave="delClass">
-        <span class="fwt_name">美团网址</span>
-        <div class="hotel">
-          <div style="width:270px">
-            <span>酒店旅游</span>
-            <div class="font_hontel">
-              <div v-for="(item,index) in hotel" :key="index">{{item}}</div>
-            </div>
-          </div>
-          <div style="width:180px">
-            <span>吃美食</span>
-            <div class="font_cate">
-              <div v-for="(item,index) in cate" :key="index">{{item}}</div>
-            </div>
-          </div>
-          <div style="width:100px">
-            <span>看电影</span>
-            <div class="font_movie">
-              <div v-for="(item,index) in movie" :key="index">{{item}}</div>
-            </div>
-          </div>
-          <div>
-            <span>手机App</span>
-            <div class="ig">
-              <img
-                src="https://s0.meituan.net/bs/fe-web-meituan/2d53095/img/appicons/meituan.png"
-                alt
-              />
-              <img
-                src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png"
-                alt
-              />
-              <img
-                src="https://p0.meituan.net/travelcube/162c3308d9622f6d9cfaa49e60be4dca8573.png"
-                alt
-              />
-              <img
-                src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png"
-                alt
-              />
-              <img
-                src="https://s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png"
-                alt
-              />
-            </div>
-          </div>
+        <div>
+          <Button type="warning" style="width:70px">
+            <i class="iconfont icon-sousuo"></i>
+          </Button>
         </div>
       </div>
     </div>
@@ -114,7 +147,10 @@
 export default {
   data() {
     return {
+      flag: false,
+      value1: "",
       arr: {},
+      list: [],
       num: "",
       hotel: [
         "国际机票",
@@ -140,11 +176,21 @@ export default {
         "国内票房榜",
         "北美票房榜",
         "电影排行榜"
-      ],
+      ]
     };
   },
   components: {},
   methods: {
+    //失去
+    lose() {
+      this.flag = false;
+    },
+    //
+    autofocus() {
+      console.log(1);
+      this.flag = true;
+    },
+
     //delClass
     delClass() {
       this.num = 0;
@@ -157,7 +203,19 @@ export default {
     getLocation() {
       this.$api.getLocation().then(res => {
         this.arr = eval("(" + res.data + ")");
-        console.log(this.arr);
+        //console.log(this.arr);
+        this.getScenic();
+      });
+    },
+    //获取热门搜索
+    getScenic() {
+      let name = this.arr.city;
+      name = name.substring(0, name.length - 1);
+      //console.log(name);
+      this.$api.getScenic(name).then(res => {
+        //console.log(res);
+        this.list = res.data.result;
+        //console.log(this.list);
       });
     }
   },
@@ -225,21 +283,60 @@ export default {
   }
 }
 .hotel {
-    position: absolute;
-    left: 30px;
-    top: 35px;
-    box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
-    width: 1148px;
-    display: flex;
-    //justify-content: space-around;
-    background: rgb(248, 248, 248);
-    img{
-      height: 60px;
-    }
+  position: absolute;
+  left: 30px;
+  top: 35px;
+  box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
+  width: 1148px;
+  display: flex;
+  //justify-content: space-around;
+  background: rgb(248, 248, 248);
+  img {
+    height: 60px;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+  }
+}
+
+.header {
+  width: 70%;
+  margin: 0 22px;
+  //border: 1px solid red;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.warning {
+  display: flex;
+}
+.img {
+  width: 120px;
+  height: 40px;
+}
+
+.input {
+  position: absolute;
+  background: white;
+  //height: 60px;
+  width: 400px;
+  box-shadow: 0 0 2px rgb(178, 165, 193);
+  //border: 1px solid red;
+  .input-hot {
+    margin: 2px 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(102, 102, 102);
+  }
+  .list{
+    margin: 0px 5px;
     span{
-      font-size: 16px;
-      font-weight: 700;
-      color: black;
+      font-size: 12px;
+      cursor: pointer;
     }
   }
+}
 </style>

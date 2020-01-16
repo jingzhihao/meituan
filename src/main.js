@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import api from './http/api'
 
+import './global/'
+
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 

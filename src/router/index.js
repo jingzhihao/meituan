@@ -12,11 +12,31 @@ const routes = [{
         path: '/',
         component: Common,
         children: [{
-            path: '/',
-            name: 'home',
-            component: () =>
-                import ('../views/home/Home.vue')
-        }]
+                path: '/',
+                name: 'home',
+                component: () =>
+                    import ('../views/home/Home.vue')
+            },
+
+        ]
+    },
+    {
+        path: '/city',
+        name: 'city',
+        component: () =>
+            import ('../views/city/City.vue')
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import ('../views/login/Login.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () =>
+            import ('../views/login/Register.vue')
     },
     {
         path: '/about',
