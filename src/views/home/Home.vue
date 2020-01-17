@@ -4,20 +4,21 @@
     <!--头部-->
     <top></top>
     
-    <!--搜索-->
-    
+    <!--侧边导航和轮播图-->
+    <slideshow></slideshow>
   </div>
 </template>
 
 <script>
 import top from "../../components/home/Top";
-
+import slideshow from "../../components/home/Slideshow";
 export default {
   data() {
     return {};
   },
   components: {
     top,
+    slideshow
   },
   methods: {
     getLocation() {

@@ -135,7 +135,7 @@
         </div>
         <div>
           <Button type="warning" style="width:70px">
-            <i class="iconfont icon-sousuo"></i>
+            <i class="iconfont icon-sousuo" style="color: black"></i>
           </Button>
         </div>
       </div>
@@ -237,6 +237,7 @@ export default {
   align-items: center;
   font-size: 10px;
   color: rgb(102, 102, 102);
+  
   a:hover {
     color: rgb(253, 140, 0);
   }
@@ -304,7 +305,7 @@ export default {
 
 .header {
   
-  margin: 20px auto;
+  //margin: 20px auto;
   //border: 1px solid red;
   height: 100px;
   display: flex;
@@ -312,12 +313,12 @@ export default {
   align-items: center;
   box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
   .header-title{
-    padding: 0 100px;
+    padding: 0 60px;
   }
 }
 .warning {
   display: flex;
-  margin: 0 100px
+  margin: 0 150px
 }
 .img {
   width: 120px;

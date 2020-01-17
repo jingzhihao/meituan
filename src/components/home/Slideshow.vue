@@ -1,5 +1,12 @@
 <template>
-  <div></div>
+  <div class="banner">
+    <div class="banner-tilite">
+      <div>全部分类</div>
+      <div v-for="item in arr" :key="item.id">
+        <div><i class="iconfont" :class="`icon-${item.type}`" :style="`color:${item.color}`"></i>{{item.name}}</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -131,16 +138,48 @@ export default {
           title: "供应商注册入口",
           details: []
         }
+      ],
+      arr:[],
+      colors:[
+        '#FF8200','#FFB500','#9B5E3E','#FFB500','#FF3D00','#03A9F4',
+        '#00BF96','#00BF96','#FF4081','#FF4081','#FF4081','#03A9F4',
+        '#00BF96','#00BF96','#03A9F4','#00BF96'
       ]
     };
   },
   components: {},
-  methods: {},
-  mounted() {},
+  methods: {
+    //获取所有数据
+    getMenu() {
+      this.$api.getMenu().then(res => {
+        this.arr = res.data.menu
+        //console.log(this.arr);
+        this.arr.map((item,index) => {
+          this.colors.map((it,idx) =>{
+            if(index === idx){
+             this.arr.push(item.color = it)
+            }
+          })
+        })
+        //console.log(this.arr);
+      });
+    }
+  },
+  mounted() {
+    this.getMenu();
+  },
   watch: {},
   computed: {}
 };
 </script>
 
 <style scoped lang='scss'>
+.banner {
+  width: 1115px;
+  margin: 0 auto;
+}
+.banner-tilite{
+  width: 200px;
+  box-shadow: 0 0 5px rgb(178, 165, 193);
+}
 </style>

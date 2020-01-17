@@ -33,7 +33,12 @@
 
       <div class="hotCity">
         <span class="hot">按照字母分类:</span>
-        <span v-for="item in hotCity" :key="item.id">{{item.province}}</span>
+        <span v-for="item in arr" :key="item.id">{{item}}</span>
+      </div>
+      <div class="city">
+        <div v-for="item in city" :key="item.id">
+          <span v-for="it in item" :key="it.id">{{it.name}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -49,8 +54,8 @@ export default {
       disabled: true,
       value2: "",
       hotCity: [],
-      city:[],
-      arr:[]
+      city: [],
+      arr: []
     };
   },
   components: {
@@ -60,7 +65,7 @@ export default {
     //获取省级分类
     getProvince() {
       this.$api.Province().then(res => {
-        console.log(res);
+        //console.log(res);
         this.cityList = res.data.province;
         //console.log(this.cityList);
       });
@@ -86,17 +91,15 @@ export default {
       });
     },
     //
-     getCities() {
+    getCities() {
       //全部
-      
       this.city = this.$city.data.cities;
       //热
-
-      Object.keys(this.city).map(item => {
-        this.arr.push(...this.city[item]);
-      });
-      console.log(this.arr);
-    },
+      for(let i in this.city){
+        this.arr.push(i)
+      }
+      //console.log(this.arr);
+    }
   },
   mounted() {
     this.getProvince();
@@ -142,6 +145,13 @@ export default {
     font-size: 12px;
     color: rgb(102, 102, 102);
     padding: 10px 10px;
+  }
+}
+.city {
+   span {
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    padding: 10px 15px;
   }
 }
 </style>
