@@ -33,14 +33,24 @@
 
       <div class="hotCity">
         <span class="hot">按照字母分类:</span>
-        <span v-for="item in arr" :key="item.id">{{item}}</span>
+        <a class="sp-hots textalign" v-for="item in arr" :key="item.id" :href="`#${item}`">{{item}}</a>
       </div>
       <div class="city">
-        <div v-for="item in city" :key="item.id">
-          <span v-for="it in item" :key="it.id">{{it.name}}</span>
+        <div class="city-area flex" v-for="item in arr" :key="item.id" :id="item">
+          <span class="city-area-item textalign">{{item}}</span>
+          <div class="cities flex">
+            <span
+              class="city-item"
+              v-for="(it,index) in city[item]"
+              @click="changeCity(it.name)"
+              :key="index"
+              :class="{hots:it.id ==='1'}"
+            >{{it.name}}</span>
+          </div>
         </div>
       </div>
     </div>
+    <font></font>
   </div>
 </template>
 
@@ -62,6 +72,32 @@ export default {
     top
   },
   methods: {
+    // 切换城市返回主页
+    changeCity(items) {
+      this.$store.state.citys = items;
+      sessionStorage.setItem("locations", this.$store.state.citys);
+      this.$router.push("/");
+      if (!localStorage.getItem("recentCitys")) {
+        localStorage.setItem(
+          "recentCitys",
+          JSON.stringify(this.$store.state.recentCity)
+        );
+      }
+      let flags = true;
+      this.$store.state.recentCity.map(item => {
+        if (item === items) {
+          flags = false;
+        }
+      });
+      if (flags) {
+        this.$store.state.recentCity.unshift(items);
+      }
+      localStorage.setItem(
+        "recentCitys",
+        JSON.stringify(this.$store.state.recentCity)
+      );
+      // console.log(this.$store.state.recentCity);
+    },
     //获取省级分类
     getProvince() {
       this.$api.Province().then(res => {
@@ -95,8 +131,8 @@ export default {
       //全部
       this.city = this.$city.data.cities;
       //热
-      for(let i in this.city){
-        this.arr.push(i)
+      for (let i in this.city) {
+        this.arr.push(i);
       }
       //console.log(this.arr);
     }
@@ -113,16 +149,15 @@ export default {
 
 <style scoped lang='scss'>
 .font {
-  width: 1115px;
-  margin: 20px 80px;
-  box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
-  > div {
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
-    width: 96%;
-    margin: 0 auto;
-  }
+  width: 1190px;
+  margin: 20px auto;
+  min-height: 1000px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  font-size: 16px;
+  color: #333;
 }
 .city-tilte {
   display: flex;
@@ -141,6 +176,16 @@ export default {
     color: #333;
     font-weight: 500;
   }
+  .sp-hots {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+    color: #666;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   > span {
     font-size: 12px;
     color: rgb(102, 102, 102);
@@ -148,10 +193,36 @@ export default {
   }
 }
 .city {
-   span {
-    font-size: 12px;
-    color: rgb(102, 102, 102);
-    padding: 10px 15px;
+  .city-area {
+    padding: 13px 30px 13px 10px;
+    border-radius: 10px;
+    transition: background-color 0.5s;
+    &:hover {
+      background-color: #f8f8f8;
+    }
+    .city-area-item {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #ffd000;
+      line-height: 40px;
+    }
+    .cities {
+      max-width: 1065px;
+      flex-wrap: wrap;
+      .city-item {
+        margin: 5px 10px;
+        font-size: 14px;
+        color: #666;
+        &:hover {
+          cursor: pointer;
+          color: #222222 !important;
+        }
+      }
+      .hots {
+        color: #ff6600;
+      }
+    }
   }
 }
 </style>

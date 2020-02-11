@@ -112,31 +112,33 @@
     </div>
     <!--搜索-->
     <div class="header">
-      <div class="header-title">
-        <a>
-          <img class="img" src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团" />
-        </a>
-      </div>
-      <div class="warning">
-        <div>
-          <Input
-            v-model="value1"
-            @on-focus="autofocus"
-            @on-blur="lose"
-            placeholder="搜索商家或地点"
-            style="width:400px"
-          />
-          <div class="input" v-show="flag">
-            <span class="input-hot">热门搜索</span>
-            <div class="list" v-for="item in list" :key="item.id">
-              <span>{{item.name}}</span>
+      <div class="haaden">
+        <div class="header-title">
+          <a>
+            <img class="img" src="//s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="美团" />
+          </a>
+        </div>
+        <div class="warning">
+          <div>
+            <Input
+              v-model="value1"
+              @on-focus="autofocus"
+              @on-blur="lose"
+              placeholder="搜索商家或地点"
+              style="width:400px"
+            />
+            <div class="input" v-show="flag">
+              <span class="input-hot">热门搜索</span>
+              <div class="list" v-for="item in list" :key="item.id">
+                <span>{{item.name}}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <Button type="warning" style="width:70px">
-            <i class="iconfont icon-sousuo" style="color: black"></i>
-          </Button>
+          <div>
+            <Button type="warning" style="width:70px">
+              <i class="iconfont icon-sousuo" style="color: black"></i>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -225,19 +227,19 @@ export default {
   watch: {},
   computed: {}
 };
-</script>
+</script>``
 
 <style scoped lang='scss'>
 .cont {
-  width: 1115px;
+  width: 1190px;
   margin: 0 auto;
   height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   color: rgb(102, 102, 102);
-  
+
   a:hover {
     color: rgb(253, 140, 0);
   }
@@ -289,7 +291,7 @@ export default {
   left: 30px;
   top: 35px;
   box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
-  width: 1148px;
+  width: 1190PX;
   display: flex;
   //justify-content: space-around;
   background: rgb(248, 248, 248);
@@ -304,21 +306,22 @@ export default {
 }
 
 .header {
-  
-  //margin: 20px auto;
-  //border: 1px solid red;
-  height: 100px;
+  height: 180px;
+  //box-shadow: 0 0 1px 0;
+  background: rgb(255,255,255)
+}
+.haaden{
+  background: rgb(255,255,255);
+  width: 900px;
   display: flex;
-  //justify-content: space-around;
+  justify-content: space-between;
+  height: 130px;
   align-items: center;
-  box-shadow: 0px 3px 5px 0px rgb(178, 165, 193);
-  .header-title{
-    padding: 0 60px;
-  }
+  //border: 1px solid red;
+  margin: 0 200px;
 }
 .warning {
   display: flex;
-  margin: 0 150px
 }
 .img {
   width: 120px;
@@ -339,9 +342,9 @@ export default {
     font-weight: 700;
     color: rgb(102, 102, 102);
   }
-  .list{
+  .list {
     margin: 0px 5px;
-    span{
+    span {
       font-size: 12px;
       cursor: pointer;
     }
